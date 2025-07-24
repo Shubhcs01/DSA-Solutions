@@ -1,27 +1,25 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] nums, int target) {
         List<List<Integer>> ans = new ArrayList<>();
-        helper(nums, 0, target, 0, ans, new ArrayList<>());
+        backtrack(nums, 0, target, ans, new ArrayList<>());
         return ans;
     }
 
-    private void helper(int[] nums, int i, int tar, int sum, List<List<Integer>> ans, List<Integer> list) {
+    private void backtrack(int[] nums, int i, int tar, List<List<Integer>> ans, List<Integer> list) {
         //base case
-        if(sum == tar){
+        if(tar == 0){
             ans.add(new ArrayList<>(list));
             return;
         }
 
-        if(i == nums.length || sum > tar) {
+        if(i == nums.length || tar < 0) {
             return;
         }
 
         list.add(nums[i]);
-        sum += nums[i];
-        helper(nums, i, tar, sum, ans, list);
+        backtrack(nums, i, tar - nums[i], ans, list);
 
         list.remove(list.size()-1);
-        sum -= nums[i];
-        if(i+1 < nums.length) helper(nums, i+1, tar, sum, ans, list);
+        backtrack(nums, i+1, tar, ans, list);
     }
 }
