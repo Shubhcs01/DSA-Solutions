@@ -1,29 +1,27 @@
 class Solution {
-    public List<List<Integer>> combinationSum(int[] arr, int tar) {
-            
+    public List<List<Integer>> combinationSum(int[] nums, int target) {
         List<List<Integer>> ans = new ArrayList<>();
-        f(arr,0,tar,ans,new ArrayList<>());
+        helper(nums, 0, target, 0, ans, new ArrayList<>());
         return ans;
-        
     }
-    
-    void f(int[] arr,int idx, int tar, List<List<Integer>> ans, List<Integer> list){
-        
-        if(idx == arr.length){
-            if(tar == 0) 
-                ans.add(new ArrayList<>(list));
+
+    private void helper(int[] nums, int i, int tar, int sum, List<List<Integer>> ans, List<Integer> list) {
+        //base case
+        if(sum == tar){
+            ans.add(new ArrayList<>(list));
             return;
         }
 
-        if(arr[idx] <= tar){
-            //pick
-            list.add(arr[idx]);
-            f(arr,idx,tar-arr[idx],ans,list);
-            list.remove(list.size()-1);
+        if(i == nums.length || sum > tar) {
+            return;
         }
 
-        //not pick
-        f(arr,idx+1,tar,ans,list);
-        
+        list.add(nums[i]);
+        sum += nums[i];
+        helper(nums, i, tar, sum, ans, list);
+
+        list.remove(list.size()-1);
+        sum -= nums[i];
+        if(i+1 < nums.length) helper(nums, i+1, tar, sum, ans, list);
     }
 }
