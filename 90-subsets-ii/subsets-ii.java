@@ -2,15 +2,15 @@ class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Set<List<Integer>> set = new HashSet<>();
         Arrays.sort(nums);
-        backtrack(nums,0,set,new ArrayList<>());
-        List<List<Integer>> ans = new ArrayList<>(set);
+        backtrack(nums,0,set,new ArrayList<>()); // O(2^n * n)
+        List<List<Integer>> ans = new ArrayList<>(set); // O(k)
         return ans;
     }
 
     private void backtrack(int[] nums, int i, Set<List<Integer>> ans, List<Integer> list) {
         //base case
         if(i == nums.length){
-            ans.add(new ArrayList<>(list));
+            ans.add(new ArrayList<>(list)); // O(n)
             return;
         }
 
