@@ -3,7 +3,7 @@ class Solution {
         for (int t = 0; t <= 60; t++) {
             long s = (long) num1 - (long) t * num2;
             if (s < 0)
-                continue;
+                return -1;
             if (s < t)
                 continue;
             int ones = Long.bitCount(s);
