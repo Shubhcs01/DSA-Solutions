@@ -1,17 +1,21 @@
+import java.util.*;
+
 class Solution {
-
     public int maxSum(int[] nums) {
-        Set<Integer> set = new HashSet<>(); // only contains +ve nums
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums)
+            set.add(num);
 
-        for (int num : nums) {
-            if (num > 0) {
-                set.add(num);
-            }
+        int result = 0;
+        for (int num : set) {
+            if (num > 0)
+                result += num;
         }
 
-        if (set.isEmpty()) {
-            return Arrays.stream(nums).max().getAsInt(); //max value is ans
+        if (result == 0) {
+            result = Collections.max(set);
         }
-        return set.stream().mapToInt(Integer::intValue).sum(); // sum of set values
+
+        return result;
     }
 }
