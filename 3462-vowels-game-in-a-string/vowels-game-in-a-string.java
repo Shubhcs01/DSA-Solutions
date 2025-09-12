@@ -1,0 +1,11 @@
+class Solution {
+    public boolean doesAliceWin(String s) {
+        String vowels = "aeiou";
+        for (char ch : s.toCharArray()) {
+            if (vowels.indexOf(ch) != -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
