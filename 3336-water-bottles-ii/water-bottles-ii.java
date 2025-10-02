@@ -5,9 +5,7 @@ class Solution {
 
         while (emptyBottles >= numExchange) {
             emptyBottles -= numExchange;
-            numExchange++;
-            bottleDrunk++;
-            emptyBottles++;
+            numExchange++;  bottleDrunk++; emptyBottles++;
         }
         return bottleDrunk;
     }
