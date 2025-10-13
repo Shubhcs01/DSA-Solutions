@@ -1,21 +1,32 @@
-import java.util.*;
-
 class Solution {
     public int maxSum(int[] nums) {
-        Set<Integer> set = new HashSet<>();
-        for (int num : nums)
-            set.add(num);
-
-        int result = 0;
-        for (int num : set) {
-            if (num > 0)
-                result += num;
+        boolean allNegative = true;
+        int maxValue = Integer.MIN_VALUE;
+        
+        for (int n : nums) {
+            if (n >= 0) {
+                allNegative = false;
+            }
+            if (n > maxValue) {
+                maxValue = n;
+            }
+        }
+        if (allNegative) {
+            return maxValue;
         }
 
-        if (result == 0) {
-            result = Collections.max(set);
+        Set<Integer> unique = new HashSet<>();
+        for (int n : nums) {
+            unique.add(n);
         }
 
-        return result;
+        int sum = 0;
+        for (int val : unique) {
+            if (val > 0) {
+                sum += val;
+            }
+        }
+
+        return sum;
     }
 }
