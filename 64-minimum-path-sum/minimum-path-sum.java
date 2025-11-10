@@ -8,14 +8,14 @@ class Solution {
 
     private int solve(int i, int j, int m, int n,int[][] dp,int[][] grid){
         //base
-        if(i>m || j>n ) return Integer.MAX_VALUE;
+        if(i>m || j>n ) return (int)1e7;
         if(i==m && j==n) return grid[i][j];
         if(dp[i][j] != -1) return dp[i][j];
 
         //options
-        int way1 = solve(i, j+1,m,n,dp,grid); //right
-        int way2 = solve(i+1, j,m,n,dp,grid); //down
+        int way1 = grid[i][j] + solve(i, j+1,m,n,dp,grid); //right
+        int way2 = grid[i][j] + solve(i+1, j,m,n,dp,grid); //down
 
-        return dp[i][j] =grid[i][j] + Math.min(way1,way2);
+        return dp[i][j] = Math.min(way1,way2);
     }
 }
