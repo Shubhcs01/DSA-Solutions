@@ -24,7 +24,6 @@ class Solution {
             }
         }
 
-        // If no gcd 1 found → impossible
         if (minDist == Integer.MAX_VALUE) return -1;
 
         // Total operations = (to make one 1) + (to spread it)
